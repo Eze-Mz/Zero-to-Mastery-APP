@@ -37,6 +37,9 @@ const initialState = {
   },
 };
 
+const localUrl = "http://localhost:8080/";
+const productionUrl = "https://lit-mountain-84047.herokuapp.com/";
+
 class App extends Component {
   constructor() {
     super();
@@ -89,7 +92,7 @@ class App extends Component {
   onSubmit = () => {
     this.setState({ imgUrl: this.state.input });
     this.setState({ boxes: [] });
-    fetch("http://localhost:8080/imageurl", {
+    fetch(`${productionUrl}imageurl`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -99,7 +102,7 @@ class App extends Component {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          fetch("http://localhost:8080/image", {
+          fetch(`${productionUrl}image`, {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

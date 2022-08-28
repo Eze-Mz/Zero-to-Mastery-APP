@@ -1,5 +1,7 @@
 import React from "react";
 
+const localUrl = "http://localhost:8080/";
+const productionUrl = "https://lit-mountain-84047.herokuapp.com/";
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +23,7 @@ class Register extends React.Component {
   };
 
   onSubmitSignIn = () => {
-    fetch("http://localhost:8080/register", {
+    fetch(`${productionUrl}register`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

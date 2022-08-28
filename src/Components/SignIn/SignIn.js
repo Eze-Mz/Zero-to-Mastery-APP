@@ -1,5 +1,7 @@
 import React from "react";
 
+const localUrl = "http://localhost:8080/";
+const productionUrl = "https://lit-mountain-84047.herokuapp.com/";
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +21,7 @@ class SignIn extends React.Component {
 
   //Función que toma los inputs de los usuarios y los compara con los usuarios registrados en la base de datos
   onSubmitSignIn = () => {
-    fetch("http://localhost:8080/signin", {
+    fetch(`${productionUrl}signin`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
