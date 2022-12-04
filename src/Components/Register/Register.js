@@ -1,7 +1,7 @@
 import React from "react";
 
 const localUrl = "http://localhost:8080/";
-const productionUrl = "https://lit-mountain-84047.herokuapp.com/";
+const productionUrl = "https://zero-to-mastery-api-production.up.railway.app/";
 class Register extends React.Component {
   constructor(props) {
     super(props);
