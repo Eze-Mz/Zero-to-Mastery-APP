@@ -38,7 +38,7 @@ const initialState = {
 };
 
 const localUrl = "http://localhost:8080/";
-const productionUrl = "https://zero-to-mastery-api-production.up.railway.app/";
+const productionUrl = "https://face-recognition-api-7p0u.onrender.com/";
 
 class App extends Component {
   constructor() {

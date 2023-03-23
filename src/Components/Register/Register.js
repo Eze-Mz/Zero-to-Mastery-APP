@@ -1,7 +1,7 @@
 import React from "react";
 
 const localUrl = "http://localhost:8080/";
-const productionUrl = "https://zero-to-mastery-api-production.up.railway.app/";
+const productionUrl = "https://face-recognition-api-7p0u.onrender.com/";
 class Register extends React.Component {
   constructor(props) {
     super(props);
