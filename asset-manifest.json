@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Zero-to-Mastery-APP/static/css/main.d239626c.css",
-    "main.js": "/Zero-to-Mastery-APP/static/js/main.e01ad40d.js",
+    "main.js": "/Zero-to-Mastery-APP/static/js/main.55571d05.js",
     "static/media/brain.svg": "/Zero-to-Mastery-APP/static/media/brain.9c51798b103d0bcd87e973983b74546e.svg",
     "index.html": "/Zero-to-Mastery-APP/index.html",
     "main.d239626c.css.map": "/Zero-to-Mastery-APP/static/css/main.d239626c.css.map",
-    "main.e01ad40d.js.map": "/Zero-to-Mastery-APP/static/js/main.e01ad40d.js.map"
+    "main.55571d05.js.map": "/Zero-to-Mastery-APP/static/js/main.55571d05.js.map"
   },
   "entrypoints": [
     "static/css/main.d239626c.css",
-    "static/js/main.e01ad40d.js"
+    "static/js/main.55571d05.js"
   ]
 }
