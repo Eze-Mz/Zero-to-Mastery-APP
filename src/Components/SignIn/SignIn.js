@@ -6,8 +6,9 @@ class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      signInEmail: "",
-      signInPassword: "",
+      signInEmail: "a@a",
+      signInPassword: "aaaa",
+      onSubmit: false
     };
   }
 
@@ -19,8 +20,11 @@ class SignIn extends React.Component {
     this.setState({ signInPassword: event.target.value });
   };
 
+
+
   //Función que toma los inputs de los usuarios y los compara con los usuarios registrados en la base de datos
   onSubmitSignIn = () => {
+    this.setState({ onSubmit: true })
     fetch(`${productionUrl}signin`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -31,11 +35,15 @@ class SignIn extends React.Component {
     })
       .then((response) => response.json())
       .then((user) => {
+        this.setState({ onSubmit: false })
         if (user.id) {
           // si existe un id significa que en la respuesta se mandó un usuario y por lo canto se puede ejecutar las funciones de cargar ese usuario en el root y cambiarla ruta así se muestra entonces esa página
           this.props.loadUser(user);
           this.props.onRouteChange("home");
         }
+      }).catch(err => {
+        console.log(err)
+        this.setState({ onSubmit: false })
       });
   };
 
@@ -51,6 +59,7 @@ class SignIn extends React.Component {
                   Email
                 </label>
                 <input
+                value={this.state.signInEmail}
                   className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                   type="email"
                   name="email-address"
@@ -63,6 +72,7 @@ class SignIn extends React.Component {
                   Password
                 </label>
                 <input
+                value={this.state.signInPassword}
                   className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                   type="password"
                   name="password"
@@ -77,16 +87,25 @@ class SignIn extends React.Component {
                 className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                 type="submit"
                 value="Sign in"
+                disabled={this.state.onSubmit}
               />
+              {
+                this.state.onSubmit &&
+                <p className="f6">Processing(waking up the server)...</p>
+              }
             </div>
+
             <div className="lh-copy mt3">
-              <p
-                onClick={() => this.props.onRouteChange("register")}
-                className="f6 link dim black db pointer"
+              <button
+                onClick={() => {
+                  if (!this.state.onSubmit) return this.props.onRouteChange("register")
+                }}
+                className={"f6 link dim bn ph3 pv2 mb2 dib bg-transparent" + (!this.state.onSubmit ? " black" : " black-30")}
               >
                 Register
-              </p>
+              </button>
             </div>
+
           </div>
         </main>
       </article>

@@ -6,17 +6,64 @@ import ImageLinkForm from "./Components/ImageLinkForm/ImageLinkForm";
 import Rank from "./Components/Rank/Rank";
 import SignIn from "./Components/SignIn/SignIn";
 import Register from "./Components/Register/Register";
-import Particles from "react-particles-js";
+import Particles from "react-tsparticles";
+import { loadSlim } from "tsparticles-slim";
 import "./App.css";
 
 //Parameters of the particles component that display particles in the background
 const particlesOptions = {
   particles: {
     number: {
-      value: 80,
+      value: 180,
       density: {
         enable: true,
-        value_area: 900,
+      },
+    },
+    color: {
+      value: "#ff0000",
+      animation: {
+        enable: true,
+        speed: 20,
+        sync: true,
+      },
+    },
+    shape: {
+      type: "circle",
+    },
+    opacity: {
+      value: 0.5,
+    },
+    size: {
+      value: {
+        min: 1,
+        max: 3,
+      },
+    },
+    links: {
+      enable: true,
+      distance: 150,
+      color: "#ffffff",
+      opacity: 0.4,
+      width: 1,
+    },
+    move: {
+      enable: true,
+      speed: 2,
+    },
+  },
+  interactivity: {
+    events: {
+      onHover: {
+        enable: true,
+        mode: "repulse",
+      },
+    },
+    modes: {
+      repulse: {
+        distance: 200,
+      },
+      push: {
+        quantity: 4,
       },
     },
   },
@@ -46,6 +93,16 @@ class App extends Component {
     this.state = initialState;
   }
 
+particlesInit = async engine => {
+    console.log(engine);
+    await loadSlim(engine);
+  }
+  
+particlesLoaded = async container => {
+    console.log(container);
+  }
+  
+
   // Función para cargar el usuario en la página
   loadUser = (data) => {
     this.setState({
@@ -58,6 +115,7 @@ class App extends Component {
       },
     });
   };
+
 
   // Función para calcular dónde va la caja de la cara en la foto
   calculateFaceLocation = (data) => {
@@ -129,7 +187,8 @@ class App extends Component {
   //Función para cambiar la ruta cada vez que cambiemos de página
   onRouteChange = (route) => {
     if (route === "signout") {
-      this.setState(initialState);
+      this.setState(initialState)
+      route = "signin"
     } else if (route === "home") {
       this.setState({ isSignedIn: true });
     }
@@ -139,7 +198,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Particles className="particles" params={particlesOptions} />
+        <Particles id="tsparticles"
+          init={this.particlesInit}
+          //loaded={this.particlesLoaded}
+          className="particles"
+          options={particlesOptions} />
         <Nav
           isSignedIn={this.state.isSignedIn}
           onRouteChange={this.onRouteChange}
@@ -160,7 +223,7 @@ class App extends Component {
               imgUrl={this.state.imgUrl}
             />
           </div>
-        ) : this.state.route === "signin" ? (
+        ) : this.state.route === "signin" ? (          
           <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
         ) : (
           // si no es "signin" ni "home" entonces mostrar

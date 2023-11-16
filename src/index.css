@@ -11,12 +11,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-repeat: no-repeat;
-  background: rgb(129, 176, 213);
-  background: linear-gradient(
-    63deg,
-    rgba(129, 176, 213, 1) 25%,
-    rgba(233, 110, 135, 1) 84%
-  ), fixed, no-repeat;
+  background: rgb(129,176,213);
+background: linear-gradient(360deg, rgba(129,176,213,1) 8%, rgba(227,204,213,1) 74%, rgba(129,176,213,1) 100%);
+  /*background: rgb(129, 176, 213);
+  background: linear-gradient(360deg, rgba(129,176,213,1) 8%, rgba(138,192,199,1) 74%, rgba(129,176,213,1) 100%);*/
 }
 
 code {
